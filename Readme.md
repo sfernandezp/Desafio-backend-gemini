@@ -55,4 +55,15 @@ uvicorn main:app --reload
 
 La API estará disponible en http://127.0.0.1:8080. Puedes probar el endpoint principal en /api/chat mediante una petición POST.
 
+## 🐳 Ejecución con Docker
+
+Si tienes Docker instalado, puedes construir y correr la aplicación con estos comandos:
+
+1. **Construir la imagen:**
+   ```bash
+   docker build -t desafio-backend .
+
+2. **Correr el contenedor:**
+docker run -p 8080:8080 --env-file .env desafio-backend
+
 Desarrollado por Samuel Fernandez - 2026.
