@@ -15,12 +15,11 @@ app = FastAPI()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"), http_options={'api_version': 'v1'})
 
 # 3. Configurar la Base de Datos (Firebase)
-# Usamos el archivo que renombraste antes
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-# Ruta de bienvenida (para probar en el navegador)
+# Ruta de bienvenida 
 @app.get("/")
 def home():
     return {"mensaje": "¡Bienvenido al Backend de Samuel! El servidor está vivo."}
@@ -39,7 +38,7 @@ async def verify_token(authorization: str = Header(None)):
 
 # 5. Endpoint del Desafío con Seguridad
 @app.post("/api/chat")
-async def chat_endpoint(data: dict, user: dict = Depends(verify_token)): # Reincorporamos la seguridad
+async def chat_endpoint(data: dict, user: dict = Depends(verify_token)): 
     prompt = data.get("prompt")
     if not prompt:
         raise HTTPException(status_code=400, detail="Falta el prompt")
